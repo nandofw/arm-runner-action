@@ -290,7 +290,8 @@ runs:
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
       if: always()
-      run: echo "$STEPS_CONTEXT"
+      run: |
+        echo "$STEPS_CONTEXT"
 branding:
   icon: 'cpu'
   color: 'purple'
