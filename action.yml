@@ -237,11 +237,6 @@ runs:
             cat ${script_dir}/github_env.sh >> $GITHUB_ENV
         exit $rc
       shell: bash
-    - name: Dump steps context
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
-      if: always()
-      run: echo "$STEPS_CONTEXT"
     - name: Copy artifacts within image
       if: ${{(always() && inputs.copy_artifacts_on_fail == 'yes' || steps.runcmd.conclusion != 'failure') && !cancelled() }}
       run: |
