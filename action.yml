@@ -237,12 +237,6 @@ runs:
             cat ${script_dir}/github_env.sh >> $GITHUB_ENV
         exit $rc
       shell: bash
-      
-    - name: Dump steps context
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
-      if: always()
-      run: echo "$STEPS_CONTEXT"
     - name: Copy artifacts within image
       if: ${{(always() && inputs.copy_artifacts_on_fail == 'yes' || steps.runcmd.conclusion != 'failure') && !cancelled() }}
       run: |
@@ -292,6 +286,11 @@ runs:
         sudo rm /usr/bin/qemu-aarch64-static0
         sudo update-binfmts --import qemu-arm
         sudo update-binfmts --import qemu-aarch64
+    - name: Dump steps context
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      if: always()
+      run: echo "$STEPS_CONTEXT"
 branding:
   icon: 'cpu'
   color: 'purple'
