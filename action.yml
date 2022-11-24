@@ -290,6 +290,7 @@ runs:
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
       if: always()
+      shell: bash
       run: |
         echo "$STEPS_CONTEXT"
 branding:
