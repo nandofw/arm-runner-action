@@ -238,7 +238,7 @@ runs:
         exit $rc
       shell: bash
     - name: Dump steps context
-	    env:
+      env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
       if: always()
       run: echo "$STEPS_CONTEXT"
